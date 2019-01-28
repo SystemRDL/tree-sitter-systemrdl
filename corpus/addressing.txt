@@ -1,0 +1,106 @@
+============================================
+5.1.2.2.2 Addressing modes - Example 1
+============================================
+
+addrmap example_5_1_2_2_2_ex1 {
+  default accesswidth=32;
+  addressing=compact;
+  reg { field {} a; } a;              // Address 0
+  reg { regwidth=64; field {} a; } b; // Address 4
+  reg { field {} a; } c[20];          // Address 0xC - Element 0
+                                      // Address 0x10 - Element 1
+                                      // Address 0x14 - Element 2
+};
+
+----
+
+(source_file (description
+  (component_def
+    (component_named_def
+      (component_type (component_primary_type))
+      (id)
+      (component_body
+        (component_body_elem (property_assignment (explicit_or_default_prop_assignment (explicit_prop_assignment
+          (prop_assignment_lhs (id))
+          (prop_assignment_rhs (constant_expression (constant_primary (primary_literal (number)))))
+        ))))
+        (component_body_elem (property_assignment (explicit_or_default_prop_assignment (explicit_prop_assignment
+          (prop_assignment_lhs (id))
+          (prop_assignment_rhs (constant_expression (constant_primary (primary_literal (addressingtype_literal)))))
+        ))))
+        (component_body_elem (component_def
+          (component_anon_def
+            (component_type (component_primary_type))
+            (component_body
+              (component_body_elem (component_def
+                (component_anon_def
+                  (component_type (component_primary_type))
+                  (component_body)
+                )
+                (component_insts (component_inst (id)))
+              ))
+            )
+          )
+          (component_insts (component_inst (id)))
+        ))
+        (comment)
+        (component_body_elem
+          (component_def
+            (component_anon_def
+              (component_type (component_primary_type))
+              (component_body
+                (component_body_elem
+                  (property_assignment (explicit_or_default_prop_assignment (explicit_prop_assignment
+                    (prop_assignment_lhs (id))
+                    (prop_assignment_rhs (constant_expression (constant_primary (primary_literal (number)))))
+                  )))
+                )
+                (component_body_elem
+                  (component_def
+                    (component_anon_def (component_type (component_primary_type)) (component_body))
+                    (component_insts (component_inst (id)))
+                  )
+                )
+              )
+            )
+            (component_insts (component_inst (id)))
+          )
+        )
+        (comment)
+        (component_body_elem
+          (component_def
+            (component_anon_def
+              (component_type (component_primary_type))
+              (component_body (component_body_elem
+                (component_def
+                  (component_anon_def
+                    (component_type (component_primary_type))
+                    (component_body)
+                  )
+                  (component_insts (component_inst (id)))
+                )
+              ))
+            )
+            (component_insts
+              (component_inst
+                (id)
+                (component_inst_array_or_range
+                  (array
+                    (constant_expression
+                      (constant_primary
+                        (primary_literal (number))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+        (comment)
+        (comment)
+        (comment)
+      )
+    )
+  )
+))

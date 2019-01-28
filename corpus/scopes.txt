@@ -1,0 +1,151 @@
+============================================
+scopes
+============================================
+
+enum root_enum {
+    zero;
+    one;
+};
+
+reg root_reg_t {
+    field {
+        enum f1_enum {
+            a;
+            b;
+        };
+        encode = f1_enum;
+    } f1;
+
+    field f2_t {
+        encode = root_enum;
+    };
+
+    f2_t f2;
+};
+
+addrmap scope_test {
+
+    root_reg_t r1;
+
+    reg r2_t {
+        field {
+            enum f1_enum {
+                a;
+                b;
+            };
+            encode = f1_enum;
+        } f1;
+
+        field f2_t {
+            encode = root_enum;
+        };
+
+        f2_t f2;
+    };
+    r2_t r2;
+};
+
+----
+
+(source_file
+  (description
+    (enum_def (id) (enum_body (enum_entry (id)) (enum_entry (id)))))
+  (description
+    (component_def
+      (component_named_def
+        (component_type (component_primary_type))
+        (id)
+        (component_body
+          (component_body_elem
+            (component_def
+              (component_anon_def
+                (component_type (component_primary_type))
+                (component_body
+                  (component_body_elem (enum_def (id) (enum_body (enum_entry (id)) (enum_entry (id)))))
+                  (component_body_elem (property_assignment (explicit_or_default_prop_assignment (explicit_prop_assignment (explicit_encode_assignment (id))))))
+                )
+              )
+              (component_insts (component_inst (id)))
+            )
+          )
+          (component_body_elem
+            (component_def
+              (component_named_def
+                (component_type (component_primary_type))
+                (id)
+                (component_body
+                  (component_body_elem
+                    (property_assignment
+                      (explicit_or_default_prop_assignment (explicit_prop_assignment (explicit_encode_assignment (id))))
+                    )
+                  )
+                )
+              )
+            )
+          )
+          (component_body_elem (explicit_component_inst (id) (component_insts (component_inst (id)))))
+        )
+      )
+    )
+  )
+  (description
+    (component_def
+      (component_named_def
+        (component_type (component_primary_type))
+        (id)
+        (component_body
+          (component_body_elem
+            (explicit_component_inst (id) (component_insts (component_inst (id))))
+          )
+          (component_body_elem
+            (component_def
+              (component_named_def
+                (component_type (component_primary_type))
+                (id)
+                (component_body
+                  (component_body_elem
+                    (component_def
+                      (component_anon_def
+                        (component_type (component_primary_type))
+                        (component_body
+                          (component_body_elem
+                            (enum_def (id) (enum_body (enum_entry (id)) (enum_entry (id))))
+                          )
+                          (component_body_elem
+                            (property_assignment
+                              (explicit_or_default_prop_assignment
+                                (explicit_prop_assignment (explicit_encode_assignment (id)))
+                              )
+                            )
+                          )
+                        )
+                      )
+                      (component_insts (component_inst (id)))
+                    )
+                  )
+                  (component_body_elem
+                    (component_def
+                      (component_named_def
+                        (component_type (component_primary_type))
+                        (id)
+                        (component_body
+                          (component_body_elem
+                            (property_assignment
+                              (explicit_or_default_prop_assignment (explicit_prop_assignment (explicit_encode_assignment (id))))
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  (component_body_elem (explicit_component_inst (id) (component_insts (component_inst (id)))))
+                )
+              )
+            )
+          )
+          (component_body_elem (explicit_component_inst (id) (component_insts (component_inst (id)))))
+        )
+      )
+    )
+  )
+)

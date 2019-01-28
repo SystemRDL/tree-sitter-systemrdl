@@ -1,0 +1,24 @@
+os: linux
+dist: trusty
+sudo: required
+language: node_js
+node_js:
+  - "11"
+  - "10"
+  - "9"
+  - "8"
+env:
+  - CXX=g++-7
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-7
+install:
+  - g++ --version
+  - npm --version
+  - time npm install
+  - wc -l src/parser.c
+  - wc -c build/Release/*.node
+script: npm test

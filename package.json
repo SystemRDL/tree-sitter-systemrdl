@@ -1,0 +1,38 @@
+{
+  "name": "tree-sitter-systemrdl",
+  "version": "0.1.0",
+  "description": "SystemRDL grammar for tree-sitter",
+  "main": "index.js",
+  "scripts": {
+    "gen": "tree-sitter generate",
+    "install": "if [ ! -d ./src ]; then tree-sitter generate; fi && npm run get && node-gyp configure build",
+    "test": "tree-sitter test",
+    "get": "mkdir -p src/tree_sitter && wget https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/include/tree_sitter/parser.h -O ./src/tree_sitter/parser.h"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drom/tree-sitter-systemrdl.git"
+  },
+  "author": "Aliaksei Chapyzhenka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drom/tree-sitter-systemrdl/issues"
+  },
+  "homepage": "https://github.com/drom/tree-sitter-systemrdl#readme",
+  "files": [
+    "grammar.js",
+    "binding.gyp",
+    "src/*"
+  ],
+  "keywords": [
+    "parser",
+    "tree-sitter",
+    "verilog"
+  ],
+  "dependencies": {
+    "nan": "^2.12.1"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "0.14.0-beta3"
+  }
+}
