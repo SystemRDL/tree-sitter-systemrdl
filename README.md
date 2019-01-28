@@ -3,4 +3,4 @@
 
 # tree-sitter-systemrdl
 
-SystemRDL grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
+[SystemRDL 2.0](http://accellera.org/downloads/standards/systemrdl) register description language grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
