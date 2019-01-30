@@ -416,7 +416,11 @@ const rules = {
       /[^*]*\*+([^/*][^*]*\*+)*/,
       '/'
     )
-  ))
+  )),
+
+  // 16.1 Embedded Perl preprocessing
+
+  template: $ => token(seq('<%', /[^%]+/, '%>')),
 
 };
 
@@ -424,5 +428,5 @@ module.exports = grammar({
   name: 'systemrdl',
   word: $ => $.id,
   rules: rules,
-  extras: $ => [/\s/, $.comment]
+  extras: $ => [/\s/, $.comment, $.template]
 });
