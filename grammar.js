@@ -327,7 +327,14 @@ const rules = {
 
   number: $ => /[0-9]+/, // FIXME
 
-  string_literal: $ => seq('"', /\w+/, '"'),
+  string_literal: $ => seq(
+    '"',
+    repeat(choice(
+      token.immediate(/[^\\"]+/),
+      token.immediate(seq('\\', /./))
+    )),
+    '"'
+  ),
 
   enumerator_literal: $ => seq($.id, '::', $.id),
 
