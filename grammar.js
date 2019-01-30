@@ -325,7 +325,13 @@ const rules = {
 
   boolean_literal: $ => choice('true', 'false'),
 
-  number: $ => /[0-9]+/, // FIXME
+  number: $ => choice(
+    /\d+/,
+    /0[xX][0-9a-fA-f]+/,
+    /[0-9]+\'[bB][01_]+/,
+    /[0-9]+\'[dD][0-9_]+/,
+    /[0-9]+\'[hH][0-9a-fA-f_]+/,
+  ),
 
   string_literal: $ => seq(
     '"',
