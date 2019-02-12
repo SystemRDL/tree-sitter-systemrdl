@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "gen": "tree-sitter generate",
-    "install": "if [ ! -d ./src ]; then tree-sitter generate; fi && npm run get && node-gyp configure build",
-    "test": "tree-sitter test",
-    "get": "mkdir -p src/tree_sitter && wget https://raw.githubusercontent.com/tree-sitter/tree-sitter/master/include/tree_sitter/parser.h -O ./src/tree_sitter/parser.h"
+    "install": "if [ ! -d ./src ]; then tree-sitter generate; fi && node-gyp configure build",
+    "test": "tree-sitter test"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,6 @@
     "nan": "^2.12.1"
   },
   "devDependencies": {
-    "tree-sitter-cli": "0.14.0-beta3"
+    "tree-sitter-cli": "^0.14.2"
   }
 }
