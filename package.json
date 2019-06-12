@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drom/tree-sitter-systemrdl.git"
+    "url": "git+https://github.com/SystemRDL/tree-sitter-systemrdl.git"
   },
   "author": "Aliaksei Chapyzhenka",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/drom/tree-sitter-systemrdl/issues"
+    "url": "https://github.com/SystemRDL/tree-sitter-systemrdl/issues"
   },
-  "homepage": "https://github.com/drom/tree-sitter-systemrdl#readme",
+  "homepage": "https://github.com/SystemRDL/tree-sitter-systemrdl#readme",
   "files": [
     "grammar.js",
     "binding.gyp",
