@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-systemrdl",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "SystemRDL grammar for tree-sitter",
   "main": "index.js",
   "scripts": {
