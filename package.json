@@ -20,9 +20,10 @@
   },
   "homepage": "https://github.com/SystemRDL/tree-sitter-systemrdl#readme",
   "files": [
+    "bin/*",
     "grammar.js",
     "binding.gyp",
-    "src/*"
+    "src/*",
   ],
   "keywords": [
     "parser",
