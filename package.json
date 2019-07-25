@@ -23,7 +23,7 @@
     "bin/*",
     "grammar.js",
     "binding.gyp",
-    "src/*",
+    "src/*"
   ],
   "keywords": [
     "parser",
