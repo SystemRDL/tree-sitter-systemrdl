@@ -1,18 +1,18 @@
 'use strict';
 
 function optseq() {
-  return optional(prec.left(seq.apply(null, arguments)))
+  return optional(prec.left(seq.apply(null, arguments)));
 }
 
 function repseq() {
-  return repeat(prec.left(seq.apply(null, arguments)))
+  return repeat(prec.left(seq.apply(null, arguments)));
 }
 
 function sep1(separator, rule) {
   return prec.left(seq(
     rule,
     repeat(prec.left(seq(separator, rule)))
-  ))
+  ));
 }
 
 const rules = {
@@ -28,8 +28,8 @@ const rules = {
     $.struct_def,
     $.constraint_def,
     $.explicit_component_inst,
-    $.property_assignment,
- ),
+    $.property_assignment
+  ),
 
   // B.2 User-defined properties
 
@@ -41,7 +41,7 @@ const rules = {
     $.property_type,
     $.property_usage,
     $.property_default,
-    $.property_constraint,
+    $.property_constraint
   ),
 
   property_type: $ => seq('type', '=', $.property_data_type, optional($.array_type), ';'),
@@ -50,7 +50,7 @@ const rules = {
     $.component_primary_type,
     'ref',
     'number',
-    $.basic_data_type,
+    $.basic_data_type
   ),
 
   property_usage: $ => seq('component', '=', $.property_comp_types, ';'),
@@ -60,7 +60,7 @@ const rules = {
   property_comp_type: $ => choice(
     $.component_type,
     'constraint',
-    'all',
+    'all'
   ),
 
   property_default: $ => seq('default', '=', $.constant_expression, ';'),
@@ -119,7 +119,7 @@ const rules = {
     optseq('=', $.constant_expression),
     optseq('@', $.constant_expression),
     optseq('+=', $.constant_expression),
-    optseq('%=', $.constant_expression),
+    optseq('%=', $.constant_expression)
   ),
 
   component_inst_alias: $ => seq('alias', $.id),
@@ -328,9 +328,9 @@ const rules = {
   number: $ => choice(
     /\d+/,
     /0[xX][0-9a-fA-f]+/,
-    /[0-9]+\'[bB][01_]+/,
-    /[0-9]+\'[dD][0-9_]+/,
-    /[0-9]+\'[hH][0-9a-fA-f_]+/,
+    /[0-9]+'[bB][01_]+/,
+    /[0-9]+'[dD][0-9_]+/,
+    /[0-9]+'[hH][0-9a-fA-f_]+/
   ),
 
   string_literal: $ => seq(
@@ -420,7 +420,7 @@ const rules = {
 
   // 16.1 Embedded Perl preprocessing
 
-  template: $ => token(seq('<%', /[^%]+/, '%>')),
+  template: $ => token(seq('<%', /[^%]+/, '%>'))
 
 };
 
@@ -430,3 +430,7 @@ module.exports = grammar({
   rules: rules,
   extras: $ => [/\s/, $.comment, $.template]
 });
+
+/* eslint camelcase: 0 */
+/* eslint no-undef: 0 */
+/* eslint no-unused-vars: 0 */
