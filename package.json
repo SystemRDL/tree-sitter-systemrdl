@@ -2,7 +2,7 @@
   "name": "tree-sitter-systemrdl",
   "version": "0.5.0",
   "description": "SystemRDL grammar for tree-sitter",
-  "main": "index.js",
+  "main": "bindings/node",
   "scripts": {
     "gen": "tree-sitter generate",
     "install": "node bin/install.js",
@@ -20,10 +20,11 @@
   },
   "homepage": "https://github.com/SystemRDL/tree-sitter-systemrdl#readme",
   "files": [
-    "bin/*",
+    "bin",
     "grammar.js",
     "binding.gyp",
-    "src/*"
+    "src",
+    "bindings"
   ],
   "keywords": [
     "parser",
@@ -34,17 +35,11 @@
     "nan": "^2.14.2"
   },
   "devDependencies": {
-    "tree-sitter-cli": "^0.17.1",
     "@drom/eslint-config": "^0.10.0",
-    "eslint": "^6.8.0"
+    "tree-sitter-cli": "^0.19.3",
+    "eslint": "^7.21.0"
   },
   "eslintConfig": {
-    "extends": "@drom/eslint-config/eslint4/node4",
-    "rules": {
-      "indent": [
-        1,
-        2
-      ]
-    }
+    "extends": "@drom/eslint-config/eslint4/node8"
   }
 }
