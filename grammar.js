@@ -63,7 +63,12 @@ const rules = {
     'all'
   ),
 
-  property_default: $ => seq('default', '=', $.constant_expression, ';'),
+  property_default: $ => seq(
+    'default',
+    '=',
+    $.constant_expression,
+    ';'
+  ),
 
   property_constraint: $ => seq('constraint', '=', $.property_constraint_type, ';'),
 
@@ -80,9 +85,17 @@ const rules = {
     seq($.component_inst_type, $.component_anon_def, $.component_insts, ';')
   ),
 
-  component_named_def: $ => seq($.component_type, $.id, optional($.param_def), $.component_body),
+  component_named_def: $ => seq(
+    field('type', $.component_type),
+    field('id', $.id),
+    field('param', optional($.param_def)),
+    field('body', $.component_body)
+  ),
 
-  component_anon_def: $ => seq($.component_type, $.component_body),
+  component_anon_def: $ => seq(
+    field('type', $.component_type),
+    field('body', $.component_body)
+  ),
 
   component_body: $ => seq('{', repeat($.component_body_elem), '}'),
 
@@ -105,7 +118,7 @@ const rules = {
   explicit_component_inst: $ => seq(
     optional($.component_inst_type),
     optional($.component_inst_alias),
-    $.id,
+    field('id', $.id),
     $.component_insts,
     ';'
   ),
@@ -115,11 +128,12 @@ const rules = {
   ),
 
   component_inst: $ => seq(
-    $.id, optional($.component_inst_array_or_range),
-    optseq('=', $.constant_expression),
-    optseq('@', $.constant_expression),
-    optseq('+=', $.constant_expression),
-    optseq('%=', $.constant_expression)
+    field('id', $.id),
+    optional(field('aor', $.component_inst_array_or_range)),
+    optseq('=', field('a0', $.constant_expression)),
+    optseq('@', field('a1', $.constant_expression)),
+    optseq('+=', field('a2', $.constant_expression)),
+    optseq('%=', field('a3', $.constant_expression))
   ),
 
   component_inst_alias: $ => seq('alias', $.id),
@@ -222,7 +236,12 @@ const rules = {
   explicit_encode_assignment: $ => seq('encode', '=', $.id),
 
   explicit_prop_assignment: $ => choice(
-    seq($.prop_assignment_lhs, optseq('=', $.prop_assignment_rhs)),
+    seq(
+      field('LHS', $.prop_assignment_lhs),
+      optseq(
+        '=',
+        field('RHS', $.prop_assignment_rhs)
+      )),
     $.explicit_encode_assignment
   ),
 
@@ -277,9 +296,19 @@ const rules = {
 
   // B.12 Array and range
 
-  range: $ => seq('[', $.constant_expression, ':', $.constant_expression, ']'),
+  range: $ => seq(
+    '[',
+    field('msb', $.constant_expression),
+    ':',
+    field('lsb', $.constant_expression),
+    ']'
+  ),
 
-  array: $ => seq('[', $.constant_expression, ']'),
+  array: $ => seq(
+    '[',
+    field('size', $.constant_expression),
+    ']'
+  ),
 
   array_type: $ => seq('[', ']'),
 
@@ -325,13 +354,13 @@ const rules = {
 
   boolean_literal: $ => choice('true', 'false'),
 
-  number: $ => choice(
-    /\d+/,
-    /0[xX][0-9a-fA-f]+/,
+  number: $ => token(choice(
+    /[0-9]+/,
+    /0[xX][0-9a-fA-F]+/,
     /[0-9]+'[bB][01_]+/,
     /[0-9]+'[dD][0-9_]+/,
-    /[0-9]+'[hH][0-9a-fA-f_]+/
-  ),
+    /[0-9]+'[hH][0-9a-fA-F_]+/
+  )),
 
   string_literal: $ => seq(
     '"',
@@ -428,7 +457,11 @@ module.exports = grammar({
   name: 'systemrdl',
   word: $ => $.id,
   rules: rules,
-  extras: $ => [/\s/, $.comment, $.template]
+  extras: $ => [
+    /\s|\\\r?\n/,
+    $.comment
+    // $.template
+  ]
 });
 
 /* eslint camelcase: 0 */
