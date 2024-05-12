@@ -1,5 +1,5 @@
 [![NPM version](https://img.shields.io/npm/v/tree-sitter-systemrdl.svg)](https://www.npmjs.org/package/tree-sitter-systemrdl)
-[![TravisCI](https://travis-ci.com/SystemRDL/tree-sitter-systemrdl.svg?branch=master)](https://travis-ci.com/SystemRDL/tree-sitter-systemrdl)
+[![Build Status](https://github.com/SystemRDL/tree-sitter-systemrdl/actions/workflows/linux.yml/badge.svg)](https://github.com/SystemRDL/tree-sitter-systemrdl/workflows/linux.yml)
 
 # tree-sitter-systemrdl
 
