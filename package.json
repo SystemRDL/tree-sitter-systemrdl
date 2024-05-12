@@ -35,11 +35,11 @@
     "nan": "^2.14.2"
   },
   "devDependencies": {
-    "@drom/eslint-config": "^0.10.0",
-    "eslint": "^7.22.0",
-    "tree-sitter-cli": "^0.20.1"
+    "@drom/eslint-config": "^0.12.0",
+    "eslint": "^8.56.0",
+    "tree-sitter-cli": "^0.22.6"
   },
   "eslintConfig": {
-    "extends": "@drom/eslint-config/eslint4/node8"
+    "extends": "@drom/eslint-config/eslint8/node12"
   }
 }
